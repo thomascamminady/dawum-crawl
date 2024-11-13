@@ -31,10 +31,10 @@ jobs:
 
       - name: Commit and Push CSV File
         run: |
-          git config --global user.name "thomascamminady"
-          git config --global user.email "0milieux_member@icloud.com"
+          git config --global user.name "GitHub Actions Bot"
+          git config --global user.email "actions@github.com"
           git add data/dawum*.csv
           git commit -m "Automated commit of generated CSV"
-          git push
+          git push origin HEAD:${{ github.ref }}  # Pushes to the current branch
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
