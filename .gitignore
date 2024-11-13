@@ -168,3 +168,4 @@ logs/
 .ruff_cache/
 .editorconfig
 poetry.toml
+ideation/
