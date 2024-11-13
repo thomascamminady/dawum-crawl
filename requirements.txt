@@ -309,3 +309,10 @@ typing-extensions==4.12.2 ; python_version >= "3.11.dev0" and python_version < "
 urllib3==2.2.3 ; python_version >= "3.11.dev0" and python_version < "3.12.dev0" \
     --hash=sha256:ca899ca043dcb1bafa3e262d73aa25c465bfb49e0bd9dd5d59f1d0acba2f8fac \
     --hash=sha256:e7d814a81dad81e6caf2ec9fdedb284ecc9c73076b62654547cc64ccdcae26e9
+vl-convert-python==1.7.0 ; python_version >= "3.11.dev0" and python_version < "3.12.dev0" \
+    --hash=sha256:285bbadb1ce8a922c87f6e75a9544fe10a652d37bd4c1519fb93f90bab381588 \
+    --hash=sha256:51f99c58b1d0d74126455ece7d41972740cb4430b8dfdf7e0908270eed5be32d \
+    --hash=sha256:8b50c492b640abb89a54a71e2c26f0f2d2c1cedc42030cc55bcc202670334724 \
+    --hash=sha256:90fba4356bd621bd31e72507a55e26dd13ebe79efa784715743116109afd0d47 \
+    --hash=sha256:962100d7670b9d35f9bb9745cdf590412f62f57c134b4a142340ba93a4dbddba \
+    --hash=sha256:bc9e1f8ca0d8d3b3789c66e37cd6a8cf0a83406427d5143133346c2b5004485b

@@ -22,6 +22,14 @@ class Crawler:
         ]
         self._df = self._get_df([_[1] for _ in self._get_all_tables()])
 
+    def df(self) -> pl.DataFrame:
+        """Return the data."""
+        return self._df
+
+    def df_pivot(self) -> pl.DataFrame:
+        """Return the data in a pivoted format."""
+        return self._pivot_df(self._df)
+
     def save(self):
         """Save the data to csv files."""
         self._df.write_csv("data/dawum.csv")

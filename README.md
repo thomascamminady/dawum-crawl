@@ -1,10 +1,14 @@
 # dawum-crawl
 
-Find this repository on [Github](https://github.com/thomascamminady/dawum-crawl) or check out the [documentation](https://thomascamminady.github.io/dawum-crawl).
+![Polling Results](data/Polling.png)
 
 ## Data
 
 The parsed data from DAWUM is available as a `.csv` file: [Download](https://raw.githubusercontent.com/thomascamminady/dawum-crawl/refs/heads/main/data/dawum.csv)
+
+## Info
+
+Find this repository on [Github](https://github.com/thomascamminady/dawum-crawl) or check out the [documentation](https://thomascamminady.github.io/dawum-crawl).
 
 ## Development
 
