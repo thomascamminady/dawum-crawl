@@ -1,7 +1,19 @@
+import json
+
 import altair as alt
 import polars as pl
 
+
+# https://gist.githubusercontent.com/thomascamminady/c5da0b7acb41faf6abd6c99aff10e144/raw/f2b074e2e3945c0102eceb4983eb998da1432d44/theme.json
+def loader():
+    with open("dawum_crawl/theme.json") as f:
+        return json.load(f)
+
+
 alt.data_transformers.disable_max_rows()
+alt.renderers.enable("browser")
+alt.themes.register("my_theme", loader)
+alt.themes.enable("my_theme")
 
 
 class Plotter:
@@ -29,7 +41,7 @@ class Plotter:
             # .mark_line(interpolate="monotone")
             # .mark_point(filled=True, opacity=0.1)
             .encode(
-                x=alt.X(shorthand="yearmonth(Datum):T"),
+                x=alt.X(shorthand="yearmonth(Datum):T").title("Datum"),
                 y=alt.Y("mean(Anteil):Q").scale(domain=[0, 50]),
                 color=alt.Color("Partei:N")
                 .scale(
