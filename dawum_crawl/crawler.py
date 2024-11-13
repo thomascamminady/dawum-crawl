@@ -252,7 +252,7 @@ class Crawler:
                 "Befragte",
                 "Methode",
                 "Umfang",
-                "Heruntergeladen",
+                # "Heruntergeladen",
             )
             .sort("Datum", "URL", descending=False, nulls_last=True)
         )
