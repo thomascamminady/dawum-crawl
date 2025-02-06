@@ -50,21 +50,21 @@ class Plotter:
                 )
                 .legend(symbolOpacity=1),
                 # size=alt.Size("Umfang:Q"),
-                # row=alt.Ro w("Partei:N"),
+                # row=alt.Row("Partei:N"),
                 # detail=alt.Detail("URL:N"),
-                opacity=alt.condition(
-                    selection, alt.value(0.5), alt.value(0.05)
-                ),
+                # opacity=alt.condition(
+                #    selection, alt.value(0.5), alt.value(0.05)
+                #),
             )
             .add_params(selection)
             .properties(width=800, height=400)
         )
 
         return alt.layer(
-            base.mark_errorband(
-                extent="stdev", interpolate="monotone", clip=True
-            ).encode(),
             base.mark_line(
-                interpolate="monotone", clip=True, filled=False
+                interpolate="monotone", clip=True, filled=False, opacity=1
             ).encode(detail="URL:N"),
+            base.mark_errorband(
+                extent="stdev", interpolate="monotone", clip=True, opacity=0.2
+            ).encode(),
         )
