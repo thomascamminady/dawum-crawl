@@ -57,7 +57,7 @@ class Plotter:
                 ),
             )
             .add_params(selection)
-            .properties(width=1200, height=400)
+            .properties(width=800, height=400)
         )
 
         return alt.layer(
