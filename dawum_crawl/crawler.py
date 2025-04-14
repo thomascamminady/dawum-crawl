@@ -20,7 +20,13 @@ class Crawler:
             "insa",
             "yougov",
         ]
-        self._df = self._get_df([_[1] for _ in self._get_all_tables()])
+        tables = []
+        for _ in self._get_all_tables():
+            try:
+                tables.append(_[1])
+            except Exception as e:
+                print(f"Error: {e}")
+        self._df = self._get_df(tables)
 
     def df(self) -> pl.DataFrame:
         """Return the data."""
