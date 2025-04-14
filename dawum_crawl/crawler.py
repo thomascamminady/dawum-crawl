@@ -104,6 +104,21 @@ class Crawler:
         )
 
     def _get_df(self, tables) -> pl.DataFrame:
+        def expr(party: str) -> pl.Expr:
+            try:
+                return pl.col("Sonstige").map_elements(
+                    lambda _list: [
+                        float(_.replace(f"{party} ", ""))
+                        for _ in _list
+                        if party in _
+                    ][0]
+                    if any(party in _ for _ in _list)
+                    else 0.0,
+                    return_dtype=pl.Float32,
+                )
+            except Exception:
+                return pl.lit(0.0)
+
         return (
             pl.concat(tables, how="diagonal_relaxed")
             .with_columns(
@@ -151,42 +166,9 @@ class Crawler:
                 ),
             )
             .with_columns(
-                BSW=(
-                    pl.col("Sonstige").map_elements(
-                        lambda _list: [
-                            float(_.replace("BSW ", ""))
-                            for _ in _list
-                            if "BSW" in _
-                        ][0]
-                        if any("BSW" in _ for _ in _list)
-                        else 0.0,
-                        return_dtype=pl.Float32,
-                    )
-                ),
-                FW=(
-                    pl.col("Sonstige").map_elements(
-                        lambda _list: [
-                            float(_.replace("FW ", ""))
-                            for _ in _list
-                            if "FW" in _
-                        ][0]
-                        if any("FW" in _ for _ in _list)
-                        else 0.0,
-                        return_dtype=pl.Float32,
-                    )
-                ),
-                PIR=(
-                    pl.col("Sonstige").map_elements(
-                        lambda _list: [
-                            float(_.replace("PIR ", ""))
-                            for _ in _list
-                            if "PIR" in _
-                        ][0]
-                        if any("PIR" in _ for _ in _list)
-                        else 0.0,
-                        return_dtype=pl.Float32,
-                    )
-                ),
+                BSW=expr("BSW"),
+                FW=expr("FW"),
+                PIR=expr("PIR"),
                 Sonstige=(
                     pl.col("Sonstige")
                     .list.first()
