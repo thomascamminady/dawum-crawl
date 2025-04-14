@@ -105,7 +105,6 @@ class Crawler:
     def _get_df(self, tables) -> pl.DataFrame:
         return (
             pl.concat(tables, how="diagonal_relaxed")
-            .drop("column_1", "column_9", "column_11")
             .with_columns(
                 Datum=(
                     (
@@ -115,7 +114,6 @@ class Crawler:
                     ).str.to_date("%d.%m.%Y")
                 )
             )
-            .drop("column_0")
             .with_columns(
                 (
                     pl.when(pl.col("Nichtwähler/Unentschl.") == "")
