@@ -20,13 +20,8 @@ class Crawler:
             "insa",
             "yougov",
         ]
-        tables = []
-        for _ in self._get_all_tables():
-            try:
-                tables.append(_[1])
-            except Exception as e:
-                print(f"Error: {e}")
-        self._df = self._get_df(tables)
+
+        self._df = self._get_df([_[1] for _ in self._get_all_tables()])
 
     def df(self) -> pl.DataFrame:
         """Return the data."""
@@ -162,7 +157,9 @@ class Crawler:
                             float(_.replace("BSW ", ""))
                             for _ in _list
                             if "BSW" in _
-                        ][0],
+                        ][0]
+                        if any("BSW" in _ for _ in _list)
+                        else 0.0,
                         return_dtype=pl.Float32,
                     )
                 ),
@@ -172,7 +169,9 @@ class Crawler:
                             float(_.replace("FW ", ""))
                             for _ in _list
                             if "FW" in _
-                        ][0],
+                        ][0]
+                        if any("FW" in _ for _ in _list)
+                        else 0.0,
                         return_dtype=pl.Float32,
                     )
                 ),
@@ -182,7 +181,9 @@ class Crawler:
                             float(_.replace("PIR ", ""))
                             for _ in _list
                             if "PIR" in _
-                        ][0],
+                        ][0]
+                        if any("PIR" in _ for _ in _list)
+                        else 0.0,
                         return_dtype=pl.Float32,
                     )
                 ),
